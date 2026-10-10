@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tradesmen Job Alerts – Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { 
+      font-family: system-ui, sans-serif; 
+      margin: 40px auto; 
+      max-width: 600px; 
+      line-height: 1.6;
+    }
+    h1 { margin-bottom: 10px; }
+    p { margin-bottom: 20px; }
+    label { display: block; margin-top: 16px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 10px; margin-top: 6px; font-size: 1rem; }
+    button { 
+      margin-top: 20px; 
+      padding: 12px 18px; 
+      font-size: 1rem; 
+      cursor: pointer; 
+      background: #0078ff; 
+      color: white; 
+      border: none; 
+      border-radius: 6px;
+    }
+    .status { margin-top: 20px; font-size: 1rem; }
+    .success { color: #0a7a2f; }
+    .error { color: #b00020; }
+  </style>
+</head>
+<body>
+
+  <h1>Tradesmen Job Alerts</h1>
+  <p>
+    Get real-time job alerts straight to your phone.  
+    If you're a <strong>plumber, electrician, roofer, builder, handyman, landscaper</strong> or any other trade — sign up below.
+  </p>
+
+  <p><strong>It's free. No signup hassle. Just jobs.</strong></p>
+
+  <label>
+    Your phone number (e.g. +447123456789)
+    <input id="phone" type="text" placeholder="+447123456789">
+  </label>
+
+  <label>
+    What trade do you do?
+    <textarea id="trade" rows="3" placeholder="Plumber, Electrician, Roofer, etc."></textarea>
+  </label>
+
+  <button id="sendBtn">Sign Me Up</button>
+
+  <div id="status" class="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
