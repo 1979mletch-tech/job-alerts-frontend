@@ -2,58 +2,224 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tradesmen Job Alerts – Sign Up</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b2b">
+  <meta name="description" content="Get trade-specific job alerts from Buildrush, straight to your phone.">
+  <title>Buildrush — Good jobs. Straight to your phone.</title>
   <style>
-    body { 
-      font-family: system-ui, sans-serif; 
-      margin: 40px auto; 
-      max-width: 600px; 
-      line-height: 1.6;
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #182334;
+      background: #f7f8fa;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      --ink: #101b2b;
+      --muted: #687487;
+      --orange: #ff7139;
+      --line: #e5e9ef;
     }
-    h1 { margin-bottom: 10px; }
-    p { margin-bottom: 20px; }
-    label { display: block; margin-top: 16px; font-weight: bold; }
-    input, textarea { width: 100%; padding: 10px; margin-top: 6px; font-size: 1rem; }
-    button { 
-      margin-top: 20px; 
-      padding: 12px 18px; 
-      font-size: 1rem; 
-      cursor: pointer; 
-      background: #0078ff; 
-      color: white; 
-      border: none; 
-      border-radius: 6px;
+
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .status { margin-top: 20px; font-size: 1rem; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 850; letter-spacing: -.06em; }
+    .brand-mark { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; background: var(--orange); color: white; font-size: 1rem; letter-spacing: -.08em; }
+    .header-link { font-size: .9rem; font-weight: 700; color: var(--ink); }
+    .header-link span { color: var(--orange); margin-left: 5px; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 56px;
+      align-items: center;
+      min-height: 510px;
+      padding: 68px 7.5%;
+      border-radius: 22px;
+      background: var(--ink);
+      color: white;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 440px;
+      height: 440px;
+      right: 30%;
+      bottom: -350px;
+      border: 1px solid rgb(255 255 255 / 12%);
+      border-radius: 50%;
+      box-shadow: 0 0 0 48px rgb(255 255 255 / 3%), 0 0 0 96px rgb(255 255 255 / 3%);
+      pointer-events: none;
+    }
+    .hero-copy, .signup-card { position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ffb394; font-size: .77rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 20px; height: 2px; background: var(--orange); }
+    h1 { max-width: 510px; margin: 20px 0 18px; font-size: clamp(2.8rem, 5.2vw, 4.4rem); line-height: .99; letter-spacing: -.065em; }
+    h1 span { color: var(--orange); }
+    .hero-copy > p { max-width: 470px; margin: 0; color: #c1c9d4; font-size: 1.08rem; line-height: 1.7; }
+    .quick-points { display: flex; flex-wrap: wrap; gap: 17px; margin: 28px 0 0; padding: 0; list-style: none; color: #e4e8ed; font-size: .88rem; }
+    .quick-points li::before { content: "✓"; margin-right: 7px; color: #ff956d; font-weight: 900; }
+
+    .signup-card { padding: 30px; border-radius: 16px; background: white; color: var(--ink); box-shadow: 0 20px 60px rgb(0 0 0 / 18%); }
+    .signup-card h2 { margin: 0 0 7px; font-size: 1.45rem; letter-spacing: -.04em; }
+    .signup-card > p { margin: 0 0 20px; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+    label { display: block; margin-top: 15px; font-size: .82rem; font-weight: 750; }
+    input, textarea {
+      display: block;
+      width: 100%;
+      margin-top: 7px;
+      padding: 12px 13px;
+      border: 1px solid #dbe1e8;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: .94rem;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    textarea { min-height: 82px; resize: vertical; }
+    input:focus, textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgb(255 113 57 / 15%); }
+    input::placeholder, textarea::placeholder { color: #a0a9b5; }
+    .submit-button {
+      width: 100%;
+      margin-top: 19px;
+      padding: 14px 16px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--orange);
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+    }
+    .submit-button:hover { background: #ed5e27; transform: translateY(-1px); }
+    .submit-button:focus-visible, a:focus-visible { outline: 3px solid #ffb394; outline-offset: 3px; }
+    .status { min-height: 1.4em; margin-top: 12px; font-size: .88rem; }
     .success { color: #0a7a2f; }
     .error { color: #b00020; }
+    .form-note { margin: 10px 0 0 !important; text-align: center; font-size: .76rem !important; }
+
+    .how-it-works { padding: 76px 0 82px; }
+    .section-heading { max-width: 540px; margin: 0 auto 35px; text-align: center; }
+    .section-heading .eyebrow { color: #cb5125; }
+    .section-heading h2 { margin: 12px 0 8px; font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -.055em; }
+    .section-heading p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .step { padding: 24px; border: 1px solid var(--line); border-radius: 13px; background: white; }
+    .step-number { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 10px; background: #fff0e9; color: #cf5124; font-size: .83rem; font-weight: 850; }
+    .step h3 { margin: 17px 0 7px; font-size: 1.05rem; }
+    .step p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+    footer { padding: 21px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; }
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; gap: 34px; padding: 48px 7%; }
+      .hero-copy > p { max-width: 560px; }
+      .signup-card { max-width: 560px; }
+      .hero::after { right: -130px; bottom: -300px; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 28px, 1120px); }
+      header { height: 68px; }
+      .header-link { font-size: .8rem; }
+      .hero { gap: 28px; min-height: auto; padding: 38px 22px 25px; border-radius: 16px; }
+      h1 { margin-top: 15px; font-size: clamp(2.65rem, 13vw, 3.5rem); }
+      .hero-copy > p { font-size: .98rem; }
+      .quick-points { gap: 10px 15px; font-size: .81rem; }
+      .signup-card { padding: 22px 18px; }
+      .how-it-works { padding: 57px 0; }
+      .steps { grid-template-columns: 1fr; gap: 12px; }
+      .step { padding: 20px; }
+      .footer-inner { flex-direction: column; gap: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
   </style>
 </head>
 <body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="#" aria-label="Buildrush home">
+        <span class="brand-mark" aria-hidden="true">br</span>
+        Buildrush
+      </a>
+      <a class="header-link" href="#signup">Get job alerts <span aria-hidden="true">↗</span></a>
+    </header>
 
-  <h1>Tradesmen Job Alerts</h1>
-  <p>
-    Get real-time job alerts straight to your phone.  
-    If you're a <strong>plumber, electrician, roofer, builder, handyman, landscaper</strong> or any other trade — sign up below.
-  </p>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow">Built for the trades</span>
+          <h1 id="hero-title">Good jobs.<br><span>Straight to</span><br>your phone.</h1>
+          <p>Spend less time hunting for work. Get trade-specific job alerts by text and get on with what you do best.</p>
+          <ul class="quick-points">
+            <li>Free to join</li>
+            <li>No app to download</li>
+            <li>Made for tradespeople</li>
+          </ul>
+        </div>
 
-  <p><strong>It's free. No signup hassle. Just jobs.</strong></p>
+        <section class="signup-card" id="signup" aria-labelledby="signup-title">
+          <h2 id="signup-title">Get started for free</h2>
+          <p>Tell us your trade and where to reach you. We'll send job alerts straight to your phone.</p>
 
-  <label>
-    Your phone number (e.g. +447123456789)
-    <input id="phone" type="text" placeholder="+447123456789">
-  </label>
+          <label for="phone">Your phone number</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+44 7123 456789" required>
 
-  <label>
-    What trade do you do?
-    <textarea id="trade" rows="3" placeholder="Plumber, Electrician, Roofer, etc."></textarea>
-  </label>
+          <label for="trade">What trade do you do?</label>
+          <textarea id="trade" name="trade" maxlength="250" placeholder="e.g. Plumber, electrician, roofer" required></textarea>
 
-  <button id="sendBtn">Sign Me Up</button>
+          <button class="submit-button" id="sendBtn" type="button">Sign me up <span aria-hidden="true">→</span></button>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+          <p class="form-note">No signup hassle. Just jobs.</p>
+        </section>
+      </section>
 
-  <div id="status" class="status"></div>
+      <section class="how-it-works" aria-labelledby="how-title">
+        <div class="section-heading">
+          <span class="eyebrow">Simple as that</span>
+          <h2 id="how-title">More time on the tools.</h2>
+          <p>Getting started takes a moment. Finding your next opportunity can happen while you work.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <h3>Tell us what you do</h3>
+            <p>Sign up with your phone number and the trade you work in.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">02</span>
+            <h3>Get alerts by text</h3>
+            <p>When a relevant job comes up, we'll send the details to your phone.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">03</span>
+            <h3>Choose what works for you</h3>
+            <p>See an opportunity that fits? Follow up and take it from there.</p>
+          </article>
+        </div>
+      </section>
+    </main>
 
+    <footer>
+      <div class="footer-inner">
+        <span>© <span id="year">2026</span> Buildrush</span>
+        <span>Job alerts for people who get the job done.</span>
+      </div>
+    </footer>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
