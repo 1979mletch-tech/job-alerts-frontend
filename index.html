@@ -110,6 +110,11 @@
     .error { color: #b00020; }
     .form-note { margin: 10px 0 0 !important; text-align: center; font-size: .76rem !important; }
 
+    .hero-copy > p.tagline { margin: 0 0 14px; color: #fff; font-size: 1.15rem; font-weight: 700; }
+    .trust-banner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+    .trust-banner span { padding: 14px 10px; border: 1px solid var(--line); border-radius: 10px; background: white; text-align: center; font-size: .9rem; font-weight: 800; color: var(--ink); }
+    .trust-banner span::before { content: "✓"; margin-right: 7px; color: var(--orange); }
+    @media (max-width: 560px) { .trust-banner { grid-template-columns: repeat(2, 1fr); } }
     .how-it-works { padding: 76px 0 82px; }
     .section-heading { max-width: 540px; margin: 0 auto 35px; text-align: center; }
     .section-heading .eyebrow { color: #cb5125; }
@@ -161,8 +166,9 @@
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <span class="eyebrow">Built for the trades</span>
+          <span class="eyebrow">For Tradespeople</span>
           <h1 id="hero-title">Good jobs.<br><span>Straight to</span><br>your phone.</h1>
+          <p class="tagline">Fixed prices agreed upfront. No quotes. No bidding. No surprises.</p>
           <p>Spend less time hunting for work. Get trade-specific job alerts by text and get on with what you do best.</p>
           <ul class="quick-points">
             <li>Free to join</li>
@@ -185,6 +191,13 @@
           <div id="status" class="status" role="status" aria-live="polite"></div>
           <p class="form-note">No signup hassle. Just jobs.</p>
         </section>
+      </section>
+
+      <section class="trust-banner" aria-label="Why Buildrush">
+        <span>Fixed Prices</span>
+        <span>UK Tradespeople</span>
+        <span>Secure Payments</span>
+        <span>Fast Response</span>
       </section>
 
       <section class="how-it-works" aria-labelledby="how-title">
